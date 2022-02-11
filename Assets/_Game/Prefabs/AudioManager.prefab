@@ -1,0 +1,229 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5586494250128696922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5586494250128696900}
+  - component: {fileID: 5586494250128696923}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5586494250128696900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586494250128696922}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -155.84598, y: -33.624752, z: 259.24127}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5586494250128696923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586494250128696922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 383e535a86b098a4483f5fe5a4f77ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundTracks:
+  - soundTrack: Ambience
+    clipList:
+    - {fileID: 8300000, guid: 4f2d431a02c19ca468db27203a4ecc22, type: 3}
+    audioMixerGroup: {fileID: -1528397511509603247, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 0.2
+    volumnChangeMultiplier: 0
+    pitchChangeMultiplier: 0
+    loop: 1
+    ignorePause: 0
+    source: {fileID: 0}
+  - soundTrack: Footsteps
+    clipList:
+    - {fileID: 8300000, guid: c01a068a6d5370c42b19ecc6cb6537b4, type: 3}
+    - {fileID: 8300000, guid: 8564f1c92f0c753438109a2833d3f6b1, type: 3}
+    - {fileID: 8300000, guid: d8f3e39e22ab2aa49b9d2c18e26befd9, type: 3}
+    - {fileID: 8300000, guid: 1660cc2d2e5f87b4f98c286a78844597, type: 3}
+    - {fileID: 8300000, guid: ce57de9921349dc4c9d76fcb43112772, type: 3}
+    - {fileID: 8300000, guid: fbe22baed8ef0a842a9e27ba2887324e, type: 3}
+    - {fileID: 8300000, guid: a782ca373609bfd43ae6d84bacee8661, type: 3}
+    audioMixerGroup: {fileID: -5427350644235117120, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 0.06
+    volumnChangeMultiplier: 0.02
+    pitchChangeMultiplier: 0.15
+    loop: 0
+    ignorePause: 0
+    source: {fileID: 0}
+  - soundTrack: Jump
+    clipList:
+    - {fileID: 8300000, guid: c0aef2b72feb5e442b3467164bcad637, type: 3}
+    audioMixerGroup: {fileID: -5427350644235117120, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 0.459
+    volumnChangeMultiplier: 0.1
+    pitchChangeMultiplier: 0.05
+    loop: 0
+    ignorePause: 0
+    source: {fileID: 0}
+  - soundTrack: Land
+    clipList:
+    - {fileID: 8300000, guid: adee5ab6cecbba84784a203abb07917c, type: 3}
+    audioMixerGroup: {fileID: -5427350644235117120, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 0.4
+    volumnChangeMultiplier: 0.05
+    pitchChangeMultiplier: 0.1
+    loop: 0
+    ignorePause: 0
+    source: {fileID: 0}
+  - soundTrack: Skid
+    clipList:
+    - {fileID: 8300000, guid: a4e096654b0177746b69e318833bffa0, type: 3}
+    audioMixerGroup: {fileID: -5427350644235117120, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 0.04
+    volumnChangeMultiplier: 0.02
+    pitchChangeMultiplier: 0.15
+    loop: 0
+    ignorePause: 0
+    source: {fileID: 0}
+  - soundTrack: LeafPickup
+    clipList:
+    - {fileID: 8300000, guid: a14afba8553858a43ac692ac36907d03, type: 3}
+    audioMixerGroup: {fileID: -5408900612657659264, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 0.3
+    volumnChangeMultiplier: 0
+    pitchChangeMultiplier: 0
+    loop: 0
+    ignorePause: 0
+    source: {fileID: 0}
+  - soundTrack: Damaged
+    clipList:
+    - {fileID: 8300000, guid: 2084a1a4367595a4489bb0efb18ac0ac, type: 3}
+    audioMixerGroup: {fileID: -5427350644235117120, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 0.508
+    volumnChangeMultiplier: 0.08
+    pitchChangeMultiplier: 0.15
+    loop: 0
+    ignorePause: 0
+    source: {fileID: 0}
+  - soundTrack: Music
+    clipList:
+    - {fileID: 8300000, guid: fca7cfad9e780e24cb182aca2a0373dc, type: 3}
+    audioMixerGroup: {fileID: -2370150542540596163, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 1
+    volumnChangeMultiplier: 0.08
+    pitchChangeMultiplier: 0.15
+    loop: 1
+    ignorePause: 1
+    source: {fileID: 0}
+  - soundTrack: Bird
+    clipList:
+    - {fileID: 8300000, guid: 0c29b8dd5326c22409e7b6d5fbd3211a, type: 3}
+    audioMixerGroup: {fileID: -2370150542540596163, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 0.208
+    volumnChangeMultiplier: 0.08
+    pitchChangeMultiplier: 0.15
+    loop: 1
+    ignorePause: 0
+    source: {fileID: 0}
+  - soundTrack: Rolling_Ground
+    clipList:
+    - {fileID: 8300000, guid: 04fd4c118cbe092438d30def3dd9d721, type: 3}
+    audioMixerGroup: {fileID: -1520703799720710388, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 0.505
+    volumnChangeMultiplier: 0.08
+    pitchChangeMultiplier: 0.15
+    loop: 1
+    ignorePause: 0
+    source: {fileID: 0}
+  - soundTrack: Rolling_highSpeed
+    clipList:
+    - {fileID: 8300000, guid: bb69a901c7e2ce141a2f5c5f0358e2df, type: 3}
+    audioMixerGroup: {fileID: -1520703799720710388, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 0.151
+    volumnChangeMultiplier: 0.08
+    pitchChangeMultiplier: 0.15
+    loop: 1
+    ignorePause: 0
+    source: {fileID: 0}
+  - soundTrack: DropWater
+    clipList:
+    - {fileID: 8300000, guid: 8536f2ee3e1413f45a012805d39bfd7e, type: 3}
+    audioMixerGroup: {fileID: -5408900612657659264, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 0.493
+    volumnChangeMultiplier: 0.08
+    pitchChangeMultiplier: 0.15
+    loop: 0
+    ignorePause: 0
+    source: {fileID: 0}
+  - soundTrack: UIHover
+    clipList:
+    - {fileID: 8300000, guid: 326aabf6adc145b46b6f22cecc8c2913, type: 3}
+    audioMixerGroup: {fileID: 8483720446313160910, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 0.493
+    volumnChangeMultiplier: 0.08
+    pitchChangeMultiplier: 0.15
+    loop: 0
+    ignorePause: 1
+    source: {fileID: 0}
+  - soundTrack: OnClick
+    clipList:
+    - {fileID: 8300000, guid: 373b33329ae235c49a87a619eecffd43, type: 3}
+    audioMixerGroup: {fileID: 8483720446313160910, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 1
+    volumnChangeMultiplier: 0.08
+    pitchChangeMultiplier: 0.15
+    loop: 0
+    ignorePause: 1
+    source: {fileID: 0}
+  - soundTrack: MainMenu
+    clipList:
+    - {fileID: 8300000, guid: 0278f506bc81e904490b48937ff0507b, type: 3}
+    audioMixerGroup: {fileID: -2370150542540596163, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 1
+    volumnChangeMultiplier: 0.08
+    pitchChangeMultiplier: 0.15
+    loop: 0
+    ignorePause: 1
+    source: {fileID: 0}
+  - soundTrack: Switch
+    clipList:
+    - {fileID: 8300000, guid: ea7bdd1638e2dad4b944bda2a40ede1c, type: 3}
+    audioMixerGroup: {fileID: -5427350644235117120, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
+    pitch: 1
+    volumn: 0.2
+    volumnChangeMultiplier: 0.08
+    pitchChangeMultiplier: 0.15
+    loop: 0
+    ignorePause: 0
+    source: {fileID: 0}
+  soundDuration: 0

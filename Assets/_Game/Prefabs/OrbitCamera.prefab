@@ -1,0 +1,267 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4036246552475412529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4036246552475412540}
+  - component: {fileID: 4036246552475412531}
+  - component: {fileID: 2282126840121832459}
+  - component: {fileID: 6139878403692956876}
+  - component: {fileID: 9073031386543158413}
+  - component: {fileID: 3966964722782439684}
+  - component: {fileID: 7116464709864575286}
+  - component: {fileID: 4867196068467314532}
+  - component: {fileID: 9019717103963533138}
+  m_Layer: 0
+  m_Name: OrbitCamera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4036246552475412540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036246552475412529}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!20 &4036246552475412531
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036246552475412529}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!114 &2282126840121832459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036246552475412529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d56f41d2377da4aa26fa78bdb2b9af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraState: 0
+  defaultHeight: 20
+  target: {fileID: 0}
+  focusRadius: 0.6
+  focusCentering: 0.8
+  facingCameraAngle: 100
+  radius: 10
+  rotationSpeed: 1
+  orbitAngles: {x: 0, y: 0}
+  minVerticalAngle: -15
+  maxVerticalAngle: 60
+--- !u!114 &6139878403692956876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036246552475412529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72a837f79d7490d4ba080486355b902a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadzone: 0.05
+  sensitivityX: 2
+  sensitivityY: 2
+  sensitivityScroll: 5
+  scrollEnable: 0
+  minScroll: 0
+  maxScroll: 20
+  inverseX: 0
+  inverseY: 0
+  inverseScroll: 0
+  inputTime: 1
+  sensMultiplier: 4
+--- !u!114 &9073031386543158413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036246552475412529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de915484852110478a389fdfc844bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camMask:
+    serializedVersion: 2
+    m_Bits: 8
+  minRadius: 1
+  threshold: 0.5
+--- !u!114 &3966964722782439684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036246552475412529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945dd9ad448619a4db64dc75ed0e0c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedState: 0
+  defaultRadius: 12
+  defaultFov: 60
+  supersonicRadius: 13
+  supersonicFov: 80
+  velocity: 18
+  transitionSpeed: 2
+  player: {fileID: 0}
+--- !u!114 &7116464709864575286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036246552475412529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c31ad51ef1a18649b3f7a1bae6a9656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  onPlayerEnter:
+    debug: 0
+    LayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    OnCollision:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 9019717103963533138}
+          m_TargetAssemblyTypeName: DisableRendering, Assembly-CSharp
+          m_MethodName: Disable
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onBallCollision:
+      m_PersistentCalls:
+        m_Calls: []
+    onWalkCollision:
+      m_PersistentCalls:
+        m_Calls: []
+    onSpeedCollision:
+      m_PersistentCalls:
+        m_Calls: []
+  onPlayerExit:
+    debug: 0
+    LayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    OnCollision:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 9019717103963533138}
+          m_TargetAssemblyTypeName: DisableRendering, Assembly-CSharp
+          m_MethodName: Enable
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onBallCollision:
+      m_PersistentCalls:
+        m_Calls: []
+    onWalkCollision:
+      m_PersistentCalls:
+        m_Calls: []
+    onSpeedCollision:
+      m_PersistentCalls:
+        m_Calls: []
+  speed: 0
+--- !u!135 &4867196068467314532
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036246552475412529}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9019717103963533138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036246552475412529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae5bf17100fb8c44ae220ae6d96d401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
