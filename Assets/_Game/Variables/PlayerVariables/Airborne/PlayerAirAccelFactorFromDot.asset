@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c4c804fed57ef4ab3be96f9c08feda, type: 3}
+  m_Name: PlayerAirAccelFactorFromDot
+  m_EditorClassIdentifier: 
+  _value:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -1.0280113
+      value: 1.8052063
+      inSlope: -2.471535
+      outSlope: -2.471535
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: -0.70597595
+      value: 1.0092846
+      inSlope: -0.018300597
+      outSlope: -0.018300597
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.10135213
+    - serializedVersion: 3
+      time: 0.54202586
+      value: 1.006675
+      inSlope: -0.0191347
+      outSlope: -0.0191347
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.118414864
+      outWeight: 0.33338675
+    - serializedVersion: 3
+      time: 0.8739375
+      value: 1.1733398
+      inSlope: -0.001839757
+      outSlope: -0.001839757
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.1358193
+      value: 1.0408759
+      inSlope: -1.7158929
+      outSlope: -1.7158929
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.26515138
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _developerDescription: 
