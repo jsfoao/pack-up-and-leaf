@@ -1,49 +1,166 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(OrbitCamera))]
 public class CameraCollision : MonoBehaviour
 {
-    [SerializeField] private LayerMask camMask;
-    [SerializeField, Range(0f, 20f)] private float minRadius = 1f;
-    [SerializeField, Range(0f, 5f)] private float threshold = 0.5f;
+    public LayerMask collisionLayer;
+
+    private bool colliding = false;
+    private Vector3[] adjustedCameraClipPoints;
+    private Vector3[] desiredCameraClipPoints;
+    [SerializeField] private float collisionSpaceSize = 3.41f;
+    [SerializeField] private float offset;
+    [SerializeField] private float smoothTime;
+    [SerializeField] private float smoothAfterColliding;
+    [SerializeField] private float smoothNoColliding;
+    
+    
+    
+    
+    private float _camVelocity;
+    
+    private float _minDistance;
+    private Camera camera;
     private OrbitCamera _orbitCamera;
+    private Transform _transform;
 
-    private void LateUpdate()
+    private void Update()
     {
-        if (_orbitCamera.Target == null) { return; }
+        // Update clip points
+        if (!camera) { return; }
         
-        _orbitCamera.CurrentRadius = Mathf.Clamp(_orbitCamera.CurrentRadius, minRadius, 100f);
+        Vector3[] clipPoints = new Vector3[5];
         
-        Vector3 targetPos = _orbitCamera.Target.transform.position;
-        Vector3 direction = (transform.position - targetPos).normalized;
-        Vector3 relativePos = targetPos + direction * _orbitCamera.Radius;
+        // Calculate clip points
+        float z = camera.nearClipPlane;
+        float x = Mathf.Tan(camera.fieldOfView / collisionSpaceSize) * z;
+        float y = x / camera.aspect;
 
-        if (Physics.Linecast(targetPos, relativePos, out RaycastHit wallHit, camMask))
+        Vector3 camPosition = _transform.position;
+        Vector3 camRight = _transform.right;
+        Vector3 camUp = _transform.up;
+        Vector3 camForward = _transform.forward;
+
+        // top left
+        clipPoints[0] = (camRight * -x + camUp * y + camForward * z) * offset + camPosition;
+
+        // top right
+        clipPoints[1] = (camRight * x + camUp * y + camForward * z)* offset + camPosition ;
+
+        // bottom left
+        clipPoints[2] = (camRight * -x + camUp * -y + camForward * z)* offset + camPosition;
+
+        // bottom right
+        clipPoints[3] = (camRight * x + camUp * -y + camForward * z)* offset + camPosition;
+        
+        // camera's position
+        clipPoints[4] = camPosition - camForward;
+        
+        // Collision with clip points
+        if (CollisionWithClipPoints(clipPoints, _orbitCamera.Target.position))
         {
-            float distanceToHit = (relativePos - wallHit.point).magnitude;
-            _orbitCamera.CurrentRadius = _orbitCamera.Radius - distanceToHit - threshold;
-            // Debug.DrawLine(targetPos, wallHit.point, Color.green);
-            // Debug.DrawLine(transform.position, wallHit.point, Color.red);
+            float newDistance = GetShortestDistance(clipPoints, _orbitCamera.Target.position) - .5f;
+            if (newDistance < _orbitCamera.Radius)
+            {
+                if (newDistance < 0f)
+                {
+                    newDistance = 0f;
+                }
+                
+                if (colliding)
+                {
+                    _minDistance = newDistance;
+                    _orbitCamera.CurrentRadius = Mathf.SmoothDamp(_orbitCamera.CurrentRadius, _minDistance, ref _camVelocity, smoothAfterColliding);
+                }
+                else
+                {
+                    _minDistance = newDistance;
+                    _orbitCamera.CurrentRadius = Mathf.SmoothDamp(_orbitCamera.CurrentRadius, _minDistance, ref _camVelocity, smoothTime);
+                }
+            }
+            colliding = true;
         }
         else
         {
-            // TODO: Fix stuttering on edge cases
-            // TODO: Refactor this being called every frame
-            _orbitCamera.CurrentRadius = _orbitCamera.Radius;
-            // Debug.DrawLine(targetPos, relativePos, Color.blue);
+            _orbitCamera.CurrentRadius = Mathf.SmoothDamp(_orbitCamera.CurrentRadius, _orbitCamera.Radius, ref _camVelocity, smoothNoColliding);
+            colliding = false;
+        }
+        
+        Debug.Log("Colliding: " + colliding);
+
+        for (int i = 0; i < clipPoints.Length; i++)
+        {
+            Debug.DrawLine(clipPoints[i], _orbitCamera.Target.position, Color.red);
         }
     }
 
-    private void OnValidate()
+    private bool CollisionWithClipPoints(Vector3[] clipPoints, Vector3 targetPosition)
     {
-        if (minRadius < threshold)
+        for (int i = 0; i < clipPoints.Length; i++)
         {
-            minRadius = threshold;
+            Ray ray = new Ray(targetPosition, clipPoints[i] - targetPosition);
+            float distance = Vector3.Distance(clipPoints[i], targetPosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, distance, collisionLayer))
+            {
+                return true;
+            }
         }
+        return false;
+    }
+
+    private float GetShortestDistance(Vector3[] clipPoints, Vector3 targetPosition)
+    {
+        float distance = -1;
+        for (int i = 0; i < clipPoints.Length; i++)
+        {
+            Ray ray = new Ray(targetPosition, clipPoints[i] - targetPosition);
+            float dist = Vector3.Distance(clipPoints[i], targetPosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, dist, collisionLayer))
+            {
+                if (distance == -1)
+                {
+                    distance = hit.distance;
+                }
+
+                if (hit.distance < distance)
+                {
+                    distance = hit.distance;
+                }
+            }
+        }
+        return distance;
+    }
+
+    private float GetAveragedDistance(Vector3[] clipPoints, Vector3 targetPosition)
+    {
+        float distance = -1;
+        float sum = 0;
+        float count = 0;
+        for (int i = 0; i < clipPoints.Length; i++)
+        {
+            Ray ray = new Ray(targetPosition, clipPoints[i] - targetPosition);
+            float dist = Vector3.Distance(clipPoints[i], targetPosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, dist, collisionLayer))
+            {
+                count++;
+                sum += hit.distance;
+            }
+        }
+        distance = sum / count;
+        return distance;
+    }
+    private void Awake()
+    {
+        camera = GetComponent<Camera>();
+        _orbitCamera = GetComponent<OrbitCamera>();
+        _transform = transform;
     }
 
     private void Start()
     {
-        _orbitCamera = GetComponent<OrbitCamera>();
+        adjustedCameraClipPoints = new Vector3[5];
+        desiredCameraClipPoints = new Vector3[5];
+        _minDistance = 0;
     }
 }

@@ -140,11 +140,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de915484852110478a389fdfc844bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camMask:
+  collisionLayer:
     serializedVersion: 2
     m_Bits: 8
-  minRadius: 1
-  threshold: 0.5
+  collisionSpaceSize: 2
+  offset: 4
+  smoothTime: 0.01
+  smoothAfterColliding: 0.01
+  smoothNoColliding: 0.2
 --- !u!114 &3966964722782439684
 MonoBehaviour:
   m_ObjectHideFlags: 0

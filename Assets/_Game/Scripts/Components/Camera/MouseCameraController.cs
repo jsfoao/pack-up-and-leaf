@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(OrbitCamera))]
 public class MouseCameraController : MonoBehaviour
 {
     private OrbitCamera _orbitCamera;
-    private Vector2 mouseInput;
+    [NonSerialized] public Vector2 mouseInput;
     
     [Header("Sensitivity")] 
     [SerializeField, Range(0.001f, 0.2f), Tooltip("How much to move mouse until input is read")] private float deadzone = 0.05f;
@@ -35,7 +36,7 @@ public class MouseCameraController : MonoBehaviour
     private void Update()
     {
         SetUI();
-        Vector2 input = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         
         // Inverse axis
         int multiplierX = inverseX ? -1 : 1;
@@ -46,10 +47,10 @@ public class MouseCameraController : MonoBehaviour
         {
             _orbitCamera.Radius += multiplierScroll * Input.GetAxis("Mouse ScrollWheel") * sensitivityScroll;
         }
-        if (input.x < -deadzone ||input.x > deadzone || input.y < -deadzone || input.y > deadzone)
+        if (mouseInput.x < -deadzone ||mouseInput.x > deadzone || mouseInput.y < -deadzone || mouseInput.y > deadzone)
         {
             _orbitCamera.cameraState = CameraState.Orbit;
-            _orbitCamera.Angles += new Vector2(multiplierX * input.x * sensitivityX, multiplierY * input.y * sensitivityY);
+            _orbitCamera.Angles += new Vector2(multiplierX * mouseInput.x * sensitivityX, multiplierY * mouseInput.y * sensitivityY);
             
             currentTime = inputTime;
             timer = true;
