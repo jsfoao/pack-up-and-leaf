@@ -32,10 +32,25 @@ public class MouseCameraController : MonoBehaviour
     [SerializeField] private float sensMultiplier;
     
     private OptionMenuUI _optionMenuUI;
+
+    private bool inputActive;
     
+    private bool inputOnStart;
+    private float inputOnStartTime;
+
+
     private void Update()
     {
         SetUI();
+
+        inputOnStartTime -= Time.deltaTime;
+        if (inputOnStartTime <= 0f)
+        {
+            inputOnStart = true;
+        }
+
+        if (!inputActive) { return; }
+        
         mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         
         // Inverse axis
@@ -100,6 +115,11 @@ public class MouseCameraController : MonoBehaviour
     {
         sensitivityX = sens;
         sensitivityY = sens;
+    }
+
+    public void SetInput(bool active)
+    {
+        inputActive = active;
     }
 
     private void Start()

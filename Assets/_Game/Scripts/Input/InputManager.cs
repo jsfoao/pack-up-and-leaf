@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour, IInput
@@ -21,6 +19,7 @@ public class InputManager : MonoBehaviour, IInput
     [SerializeField] string verticalAxisKey;
     [SerializeField] string horizontalAxisKey;
 
+    private bool inputActive;
     #region PROPERTIES
     public Vector2 InputDirection { get => inputDirection; set { inputDirection = value; } }
     public bool Jump { get => jump; set { jump = value; } }
@@ -30,10 +29,15 @@ public class InputManager : MonoBehaviour, IInput
     public bool StopRoll { get => stopRoll; set { stopRoll = value; } }
     #endregion
 
-    
+    public void SetInput(bool active)
+    {
+        inputActive = active;
+        camera.GetComponent<MouseCameraController>().SetInput(active);
+    }
 
     private void Awake()
     {
+        SetInput(true);
         camTransform = camera.transform; //is there a way to assign this reference better?
         if (camera == null)
         {
@@ -43,6 +47,8 @@ public class InputManager : MonoBehaviour, IInput
     private void Update()
     {
         //Jump
+        if (!inputActive) { return; }
+        
         Jump = Input.GetKeyDown(jumpKey);
 
         //WASD direction relative to cameras forward
@@ -61,6 +67,5 @@ public class InputManager : MonoBehaviour, IInput
 
         JumpUp = Input.GetKeyUp(jumpKey);
         JumpHold = Input.GetKey(jumpKey);
-
     }
 }
