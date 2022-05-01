@@ -143,11 +143,11 @@ MonoBehaviour:
   collisionLayer:
     serializedVersion: 2
     m_Bits: 8
-  collisionSpaceSize: 2
-  offset: 4
+  collisionSpaceSize: 3.15
+  offset: 40
   smoothTime: 0.01
-  smoothAfterColliding: 0.01
-  smoothNoColliding: 0.2
+  smoothReset: 0.03
+  smoothTimeColliding: 0.1
 --- !u!114 &3966964722782439684
 MonoBehaviour:
   m_ObjectHideFlags: 0
