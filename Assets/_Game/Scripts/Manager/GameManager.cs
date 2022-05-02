@@ -23,6 +23,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Found entity");
         }
+        
+        if (GetPlayerEntity() != null)
+        {
+            SetEntityInput(true);
+        }
         onStart.Invoke();
     }
 

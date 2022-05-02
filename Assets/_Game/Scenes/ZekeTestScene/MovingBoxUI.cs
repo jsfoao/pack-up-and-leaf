@@ -115,6 +115,11 @@ public class MovingBoxUI : MonoBehaviour
             isOpen.Value = 1;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            // Disable player input
+            if (GameManager.Instance.GetPlayerEntity() != null)
+            {
+                GameManager.Instance.SetEntityInput(false);
+            }
             // pause the time
             Time.timeScale = 0;
             AudioListener.pause = true;
@@ -154,6 +159,11 @@ public class MovingBoxUI : MonoBehaviour
             isOpen.Value = 0;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            // Enable player input
+            if (GameManager.Instance.GetPlayerEntity() != null)
+            {
+                GameManager.Instance.SetEntityInput(true);
+            }
             // pause the time
             Time.timeScale = 1;
             AudioListener.pause = false;
@@ -243,6 +253,11 @@ public class MovingBoxUI : MonoBehaviour
 
     public void ShowHouseModel()
     {
+        if (GameManager.Instance.GetPlayerEntity() != null)
+        {
+            GameManager.Instance.SetEntityInput(false);
+        }
+        
         bigHouse.SetActive(false);
         middleHouse.SetActive(false);
         smallHouse.SetActive(false);
