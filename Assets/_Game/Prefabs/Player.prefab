@@ -9962,8 +9962,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  jumpKey: 32
-  rollKey: 304
+  jumpKey: Jump
+  rollKey: Roll
   verticalAxisKey: Vertical
   horizontalAxisKey: Horizontal
 --- !u!114 &1120980949673537136

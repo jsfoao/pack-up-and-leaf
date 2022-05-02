@@ -14,8 +14,8 @@ public class InputManager : MonoBehaviour, IInput
     private bool stopRoll;
 
     [Header("KEY CONFIGURATION:")]
-    [SerializeField] KeyCode jumpKey;
-    [SerializeField] KeyCode rollKey;
+    [SerializeField] string jumpKey;
+    [SerializeField] string rollKey;
     [SerializeField] string verticalAxisKey;
     [SerializeField] string horizontalAxisKey;
 
@@ -49,7 +49,7 @@ public class InputManager : MonoBehaviour, IInput
         //Jump
         if (!inputActive) { return; }
         
-        Jump = Input.GetKeyDown(jumpKey);
+        Jump = Input.GetButtonDown(jumpKey);
 
         //WASD direction relative to cameras forward
         Vector3 inputVector;
@@ -62,10 +62,10 @@ public class InputManager : MonoBehaviour, IInput
         InputDirection = new Vector2(inputVector.x, inputVector.z);
 
         //Get when roll inputted and released
-        StartRoll = Input.GetKeyDown(rollKey);
-        StopRoll = Input.GetKeyUp(rollKey);
+        StartRoll = Input.GetButtonDown(rollKey);
+        StopRoll = Input.GetButtonUp(rollKey);
 
-        JumpUp = Input.GetKeyUp(jumpKey);
-        JumpHold = Input.GetKey(jumpKey);
+        JumpUp = Input.GetButtonUp(jumpKey);
+        JumpHold = Input.GetButtonDown(jumpKey);
     }
 }

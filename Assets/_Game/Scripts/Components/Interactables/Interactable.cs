@@ -10,9 +10,6 @@ public class Interactable : MonoBehaviour
     protected bool inRange;
     [SerializeField] private UnityEvent onInteract;
 
-    [SerializeField, Tooltip("Key that trigger interaction")]
-    private KeyCode key;
-
     [SerializeField] private float outlineWidth;
     [SerializeField] private MeshRenderer[] renderers;
     [NonSerialized] public bool active;
@@ -20,7 +17,7 @@ public class Interactable : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(key))
+        if (Input.GetButtonDown("Interact"))
         {
             if (!inRange || !active)
             {

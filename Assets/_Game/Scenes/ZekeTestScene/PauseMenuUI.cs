@@ -55,7 +55,7 @@ public class PauseMenuUI : MonoBehaviour
         if(movingOpen.Value !=0) { return; }
         if(animationIsRunning == true) { return; }
         if(optionMenuOpen == true) { return; }
-        if (Input.GetKeyDown(KeyCode.Escape))// && movingOpen.Value == 0)
+        if (Input.GetButtonDown("Pause"))// && movingOpen.Value == 0)
         {
             isPaused = !isPaused;
             if (isPaused)

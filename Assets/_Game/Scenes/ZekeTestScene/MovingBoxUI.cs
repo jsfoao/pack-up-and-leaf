@@ -64,47 +64,6 @@ public class MovingBoxUI : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-
-        //if (UIjumpOut)
-        //{
-        //    transform.Translate(0f, -12f, 0f);
-        //    if (transform.position.y < -1000)
-        //    {
-        //        UIjumpOut = false;
-        //    }
-        //}
-
-        //if (UIjumpIn)
-        //{
-
-        //    if (bounce == false)
-        //    {
-        //        transform.Translate(0f, 12f, 0f);
-        //    }
-        //    else
-        //    {
-        //        transform.Translate(0f, -0.9f, 0f);
-        //    }
-
-        //    if (transform.position.y > originY + 50)
-        //    {
-        //        bounce = true;
-        //    }
-
-        //    if (transform.position.y < originY && bounce)
-        //    {
-        //        UIjumpIn = false;
-        //    }
-        //}
-
-
-
-    }
-
 
     // Call or Exit pause menu every time you press ESC
     void CallMovingBoxMenu()
