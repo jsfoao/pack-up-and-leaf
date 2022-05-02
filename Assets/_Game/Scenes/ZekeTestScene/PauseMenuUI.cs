@@ -99,6 +99,11 @@ public class PauseMenuUI : MonoBehaviour
         Cursor.visible = true;
         // pause the time
         Time.timeScale = 0;
+        // Disable player input
+        if (GameManager.Instance.GetPlayerEntity() != null)
+        {
+            GameManager.Instance.SetEntityInput(false);
+        }
         // pause audio listener;
         AudioListener.pause = true;
         paused.TransitionTo(transitionTime);
@@ -124,6 +129,11 @@ public class PauseMenuUI : MonoBehaviour
         Cursor.visible = false;
         // resume time
         Time.timeScale = 1;
+        // Enable player input
+        if (GameManager.Instance.GetPlayerEntity() != null)
+        {
+            GameManager.Instance.SetEntityInput(true);
+        }
         // resume audio listener
         AudioListener.pause = false;
         unpaused.TransitionTo(transitionTime);
