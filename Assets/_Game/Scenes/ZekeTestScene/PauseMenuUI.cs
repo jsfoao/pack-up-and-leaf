@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 
 public class PauseMenuUI : MonoBehaviour
 {
@@ -35,8 +36,12 @@ public class PauseMenuUI : MonoBehaviour
     [SerializeField] float transitionTime = 0.01f;
     private Vector3 targetPosition;
     private RectTransform pauseMenuRect;
-    
 
+    // Menu navigation
+    [Header("Gamepad Navigation")]
+    [SerializeField] private Selectable _selectable;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -76,7 +81,7 @@ public class PauseMenuUI : MonoBehaviour
     public void ShowPauseMenu()
     {
         PauseGame();
-
+        
         // display the UI
         healthUI.GetComponent<HealthCounterUI>().HealthUIFadeOut();
         //gameObject.GetComponent<Image>().enabled = true;
@@ -94,6 +99,10 @@ public class PauseMenuUI : MonoBehaviour
 
     private void PauseGame()
     {
+        // Enables pause navigation
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(_selectable.gameObject);
+
         isOpen.Value = 1;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -124,6 +133,9 @@ public class PauseMenuUI : MonoBehaviour
 
     private void UnpauseGame()
     {
+        // Clears navigation event
+        EventSystem.current.SetSelectedGameObject(null);
+        
         isOpen.Value = 0;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

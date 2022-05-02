@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 
 public class OptionMenuUI : MonoBehaviour
 {
@@ -35,7 +36,9 @@ public class OptionMenuUI : MonoBehaviour
     float mouseSensitivity;
     bool mouseBool;
 
- 
+    [Header("Gamepad Navigation")]
+    [SerializeField] private Selectable _selectable;
+    [SerializeField] private Selectable _pauseMenuSelectable;
 
     void Start()
     {
@@ -139,6 +142,10 @@ public class OptionMenuUI : MonoBehaviour
     // Close the UI when click the close icon
     public void CloseOptionUI()
     {
+        // Enables options navigation
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(_pauseMenuSelectable.gameObject);
+        
         //Cursor.visible = false;
         // pause the time
         //Time.timeScale = 1;
@@ -154,6 +161,10 @@ public class OptionMenuUI : MonoBehaviour
     // Close the UI when click the close icon
     public void OpenOptionUI()
     {
+        // Enables options navigation
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(_selectable.gameObject);
+        
         //isPaused = true;
         //CallOptionMenu();
         Cursor.lockState = CursorLockMode.None;
