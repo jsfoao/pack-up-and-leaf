@@ -61,7 +61,14 @@ public class OptionMenuUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetButtonDown("Roll"))
+        {
+            if (optionMenuIsOpen)
+            {
+                CloseOptionUI();
+                GetComponent<PauseMenuUI>().ShowPauseMenu();
+            }
+        }
         //if (UIjumpOut)
         //{
         //    transform.Translate(0f, -12f, 0f);
@@ -102,8 +109,6 @@ public class OptionMenuUI : MonoBehaviour
     // Call or Exit option menu every time you press ESC
     void CallOptionMenu()
     {
- 
-
         // Show the pause menu
         if (isPaused)
         {
@@ -164,6 +169,7 @@ public class OptionMenuUI : MonoBehaviour
         // Enables options navigation
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_selectable.gameObject);
+        _selectable.gameObject.GetComponent<EventTrigger>().OnSelect(new BaseEventData(EventSystem.current));
         
         //isPaused = true;
         //CallOptionMenu();

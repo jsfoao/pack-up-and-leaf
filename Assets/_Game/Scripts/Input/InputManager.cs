@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class InputManager : MonoBehaviour, IInput
 {
     Transform camTransform;
@@ -20,6 +19,7 @@ public class InputManager : MonoBehaviour, IInput
     [SerializeField] string horizontalAxisKey;
 
     private bool inputActive;
+    private bool runTimer;
     #region PROPERTIES
     public Vector2 InputDirection { get => inputDirection; set { inputDirection = value; } }
     public bool Jump { get => jump; set { jump = value; } }
@@ -29,15 +29,24 @@ public class InputManager : MonoBehaviour, IInput
     public bool StopRoll { get => stopRoll; set { stopRoll = value; } }
     #endregion
 
+    private float inputTimer;
+
     public void SetInput(bool active)
     {
         inputActive = active;
+        
+        // buffer if activating input
+        if (inputActive == true)
+        {
+            inputTimer = 0.2f;
+        }
         camera.GetComponent<MouseCameraController>().SetInput(active);
     }
 
     private void Awake()
     {
         SetInput(true);
+        
         camTransform = camera.transform; //is there a way to assign this reference better?
         if (camera == null)
         {
@@ -47,8 +56,21 @@ public class InputManager : MonoBehaviour, IInput
     private void Update()
     {
         //Jump
-        if (!inputActive) { return; }
+        if (!inputActive)
+        {
+            return;
+        }
         
+        inputTimer -= Time.deltaTime;
+        inputTimer = Mathf.Clamp(inputTimer, -1, 2);
+        if (inputTimer <= 0f)
+        {
+            ExecuteInput();
+        }
+    }
+
+    private void ExecuteInput()
+    {
         Jump = Input.GetButtonDown(jumpKey);
 
         //WASD direction relative to cameras forward

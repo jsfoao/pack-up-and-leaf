@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -73,6 +74,14 @@ public class PauseMenuUI : MonoBehaviour
             }
         }
 
+        if (Input.GetButtonDown("Roll"))
+        {
+            if (isPaused)
+            {
+                isPaused = false;
+                ClosePauseMenu();
+            }
+        }
     }
 
 
