@@ -28,18 +28,6 @@ public class CameraManager : MonoBehaviour
             }
         }
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ActivateCamera("player camera");
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            ActivateCamera("alternative camera");
-        }
-    }
 }
 
 [Serializable]

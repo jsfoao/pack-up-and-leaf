@@ -1,8 +1,17 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ImageManagerUI : MonoBehaviour
 {
+    [SerializeField] private Color selectedColor;
+    [SerializeField] private Color deselectedColor;
+
+    private void Start()
+    {
+        SetDeselectedColor();
+    }
+
     public void SetImageColor(Color color)
     {
         GetComponent<Image>().color = color;
@@ -10,11 +19,11 @@ public class ImageManagerUI : MonoBehaviour
 
     public void SetSelectedColor()
     {
-        SetImageColor(Color.red);
+        SetImageColor(selectedColor);
     }
 
     public void SetDeselectedColor()
     {
-        SetImageColor(Color.white);
+        SetImageColor(deselectedColor);
     }
 }
