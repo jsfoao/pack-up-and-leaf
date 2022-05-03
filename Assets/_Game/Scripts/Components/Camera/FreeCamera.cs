@@ -50,7 +50,7 @@ public class FreeCamera : MonoBehaviour
     {
         if (!active) { return; }
         
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("Interact"))
         {
             onAnimationEnd.Invoke();
         }
