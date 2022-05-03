@@ -56,7 +56,10 @@ public class GameManager : MonoBehaviour
 
     public void SetEntityInput(bool active)
     {
-        InputManager inputManager = GetPlayerEntity().GetComponent<InputManager>();
+        PlayerEntity playerEntity = GetPlayerEntity();
+        if (playerEntity == null) { return; }
+        
+        InputManager inputManager = playerEntity.GetComponent<InputManager>();
         inputManager.SetInput(active);
     }
 }

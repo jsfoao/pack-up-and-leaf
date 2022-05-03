@@ -83,10 +83,7 @@ public class PauseMenuUI : MonoBehaviour
             }
         }
     }
-
-
-
-
+    
     public void ShowPauseMenu()
     {
         PauseGame();
@@ -113,8 +110,9 @@ public class PauseMenuUI : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(_selectable.gameObject);
 
         isOpen.Value = 1;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        
+        GetComponent<HUDManager>().SetPaused();
+        
         // pause the time
         Time.timeScale = 0;
         // Disable player input
@@ -146,8 +144,9 @@ public class PauseMenuUI : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         
         isOpen.Value = 0;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
+        GetComponent<HUDManager>().SetUnpaused();
+        
         // resume time
         Time.timeScale = 1;
         // Enable player input

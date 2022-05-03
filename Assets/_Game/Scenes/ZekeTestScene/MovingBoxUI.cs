@@ -1,9 +1,8 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
-
 
 public class MovingBoxUI : MonoBehaviour
 {
@@ -43,6 +42,10 @@ public class MovingBoxUI : MonoBehaviour
 
     RectTransform movingBoxRect;
 
+    [SerializeField] private HUDManager hudRef;
+    [Header("Gamepad Navigation")] [SerializeField]
+    private Selectable _selectable;
+
     Vector3 PlayerPosition
     {
         get => playerPosition.Value;
@@ -64,6 +67,17 @@ public class MovingBoxUI : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("Roll"))
+        {
+            if (isPaused)
+            {
+                KeepPlayButton();
+            }
+        }
+    }
+
 
     // Call or Exit pause menu every time you press ESC
     void CallMovingBoxMenu()
@@ -72,13 +86,16 @@ public class MovingBoxUI : MonoBehaviour
         if (isPaused)
         {
             isOpen.Value = 1;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_selectable.gameObject);
+            
+            // Pause cursor buffer
+            hudRef.SetPaused();
+
             // Disable player input
-            if (GameManager.Instance.GetPlayerEntity() != null)
-            {
-                GameManager.Instance.SetEntityInput(false);
-            }
+            GameManager.Instance.SetEntityInput(false);
+            
             // pause the time
             Time.timeScale = 0;
             AudioListener.pause = true;
@@ -116,13 +133,15 @@ public class MovingBoxUI : MonoBehaviour
         else
         {
             isOpen.Value = 0;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            
+            EventSystem.current.SetSelectedGameObject(null);
+            
+            // Pause cursor buffer
+            hudRef.SetUnpaused();
+            
             // Enable player input
-            if (GameManager.Instance.GetPlayerEntity() != null)
-            {
-                GameManager.Instance.SetEntityInput(true);
-            }
+            GameManager.Instance.SetEntityInput(true);
+            
             // pause the time
             Time.timeScale = 1;
             AudioListener.pause = false;
@@ -183,7 +202,6 @@ public class MovingBoxUI : MonoBehaviour
 
     public void CallMovingBox()
     {
-        
         isPaused = !isPaused;
         CallMovingBoxMenu();
     }
@@ -212,25 +230,23 @@ public class MovingBoxUI : MonoBehaviour
 
     public void ShowHouseModel()
     {
-        if (GameManager.Instance.GetPlayerEntity() != null)
-        {
-            GameManager.Instance.SetEntityInput(false);
-        }
-        
         bigHouse.SetActive(false);
         middleHouse.SetActive(false);
         smallHouse.SetActive(false);
 
         if (leafAmount.Value > leafToGetS.Value)
         {
+            GameManager.Instance.SetEntityInput(false);
             bigHouse.SetActive(true);
         }
         else if (leafAmount.Value > leafToGetA.Value)
         {
+            GameManager.Instance.SetEntityInput(false);
             middleHouse.SetActive(true);
         }
         else if (leafAmount.Value > leafToWinTreshold.Value)
         {
+            GameManager.Instance.SetEntityInput(false);
             smallHouse.SetActive(true);
         }
     }

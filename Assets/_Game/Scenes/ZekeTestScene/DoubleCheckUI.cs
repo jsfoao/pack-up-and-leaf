@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -16,7 +15,10 @@ public class DoubleCheckUI : MonoBehaviour
     [SerializeField] Image markS;
     [SerializeField] UnityEvent onShowDoubleCheck;
 
-
+    private bool isShowing = false;
+    [SerializeField] private HUDManager hudRef;
+    [Header("Gamepad Navigation")] [SerializeField]
+    private Selectable _selectable;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,10 @@ public class DoubleCheckUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetButtonDown("Roll") && isShowing)
+        {
+            CloseDoubleCheckUI();
+        }
     }
 
 
@@ -41,9 +46,11 @@ public class DoubleCheckUI : MonoBehaviour
         {
             return;
         }
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-      
+
+        isShowing = true;
+        hudRef.SetPaused();
+        GameManager.Instance.SetEntityInput(false);
+
         onShowDoubleCheck.Invoke();
         // make the UI visible 
         gameObject.GetComponent<Image>().enabled = true;
@@ -77,8 +84,9 @@ public class DoubleCheckUI : MonoBehaviour
 
     public void CloseDoubleCheckUI()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = false;
+        isShowing = false;
+        hudRef.SetUnpaused();
+        GameManager.Instance.SetEntityInput(true);
 
         // make the UI visible 
         gameObject.GetComponent<Image>().enabled = false;

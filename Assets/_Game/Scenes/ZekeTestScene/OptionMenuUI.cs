@@ -69,40 +69,6 @@ public class OptionMenuUI : MonoBehaviour
                 GetComponent<PauseMenuUI>().ShowPauseMenu();
             }
         }
-        //if (UIjumpOut)
-        //{
-        //    transform.Translate(0f, -12f, 0f);
-        //    if (transform.position.y < -1000)
-        //    {
-        //        UIjumpOut = false;
-        //    }
-        //}
-
-        //if (UIjumpIn)
-        //{
-
-        //    if (bounce == false)
-        //    {
-        //        transform.Translate(0f, 12f, 0f);
-        //    }
-        //    else
-        //    {
-        //        transform.Translate(0f, -0.9f, 0f);
-        //    }
-
-        //    if (transform.position.y > originY + 50)
-        //    {
-        //        bounce = true;
-        //    }
-
-        //    if (transform.position.y < originY && bounce)
-        //    {
-        //        UIjumpIn = false;
-        //    }
-        //}
-
-
-
     }
 
 
@@ -112,8 +78,6 @@ public class OptionMenuUI : MonoBehaviour
         // Show the pause menu
         if (isPaused)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             // pause the time
             Time.timeScale = 0;
 
@@ -134,11 +98,10 @@ public class OptionMenuUI : MonoBehaviour
         // Exit the pause menu
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            GetComponent<HUDManager>().SetUnpaused();
+            
             // pause the time
             Time.timeScale = 1;
-
         }
     }
 
@@ -169,12 +132,11 @@ public class OptionMenuUI : MonoBehaviour
         // Enables options navigation
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_selectable.gameObject);
+        
         _selectable.gameObject.GetComponent<EventTrigger>().OnSelect(new BaseEventData(EventSystem.current));
         
         //isPaused = true;
         //CallOptionMenu();
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         optionMenuIsOpen = true;
         optionMenu.SetActive(true);
         StartCoroutine(OptionAnimation(jumpInAnimation));
