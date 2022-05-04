@@ -539,7 +539,8 @@ MonoBehaviour:
   - {fileID: 3272732821645011543}
   - {fileID: 2995368333118329003}
   - {fileID: 530294805515139883}
-  volumeAtPoint: 0.2
+  volumeAtPoint: 0.5
+  audioMixer: {fileID: 24100000, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
 --- !u!1 &1861712805819505829
 GameObject:
   m_ObjectHideFlags: 0

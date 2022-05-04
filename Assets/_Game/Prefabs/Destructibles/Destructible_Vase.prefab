@@ -4908,7 +4908,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localAudioObjects:
   - {fileID: 4189832039152074997}
-  volumeAtPoint: 0.4
+  volumeAtPoint: 0.5
+  audioMixer: {fileID: 24100000, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
 --- !u!1 &4189832039152074997
 GameObject:
   m_ObjectHideFlags: 0
