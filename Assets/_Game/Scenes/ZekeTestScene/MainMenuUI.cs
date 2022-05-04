@@ -24,8 +24,6 @@ public class MainMenuUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(_selectable.gameObject);
         
         audioManager = FindObjectOfType<GlobalAudioManager>();
         thisRect = this.GetComponent<RectTransform>();
@@ -37,14 +35,9 @@ public class MainMenuUI : MonoBehaviour
         Time.timeScale = 1;
         // resume audio listener
         AudioListener.pause = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
+        EventSystem.current.SetSelectedGameObject(_selectable.gameObject);
     }
-
 
     public void PlayButton(string sceneName)
     {
@@ -93,11 +86,13 @@ public class MainMenuUI : MonoBehaviour
 
     public void CloseMainMenu()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(MainMenuAnimation(jumpOutAnimation));
     }
 
     public void OpenMainMenu()
     {
+        EventSystem.current.SetSelectedGameObject(_selectable.gameObject);
         StartCoroutine(MainMenuAnimation(jumpInAnimation));
     }
 

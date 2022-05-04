@@ -123,7 +123,6 @@ public class OptionMenuUI : MonoBehaviour
     // Close the UI when click the close icon
     public void CloseOptionUI()
     {
-        EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_pauseMenuSelectable.gameObject);
 
         //Cursor.visible = false;
@@ -142,7 +141,6 @@ public class OptionMenuUI : MonoBehaviour
     public void OpenOptionUI()
     {
         // Enables options navigation
-        EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_selectable.gameObject);
         
         _selectable.gameObject.GetComponent<EventTrigger>().OnSelect(new BaseEventData(EventSystem.current));
