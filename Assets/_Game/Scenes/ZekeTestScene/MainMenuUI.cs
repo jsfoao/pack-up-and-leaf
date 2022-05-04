@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -16,10 +18,15 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] float startRectY;
     RectTransform thisRect;
 
+    [SerializeField] private Selectable _selectable;
     private GlobalAudioManager audioManager;
+    
     // Start is called before the first frame update
     void Start()
     {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(_selectable.gameObject);
+        
         audioManager = FindObjectOfType<GlobalAudioManager>();
         thisRect = this.GetComponent<RectTransform>();
         hedgeHog.GetComponent<Animator>().ResetTrigger("StartButton");

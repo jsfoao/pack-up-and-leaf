@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class CreditsUI : MonoBehaviour
     [SerializeField] float animationDuration = 1f;
     [SerializeField] float startRectY;
 
+    [SerializeField] private MainMenuUI _mainMenuUI;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,7 @@ public class CreditsUI : MonoBehaviour
         creditsMenu.SetActive(false);
     }
 
+    
     IEnumerator OptionAnimation(AnimationCurve thisAnimation)
     {
         float time = 0f;
@@ -69,6 +73,10 @@ public class CreditsUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Roll") && creditsMenuIsOpen)
+        {
+            CloseCreditsUI();
+            _mainMenuUI.OpenMainMenu();
+        }
     }
 }

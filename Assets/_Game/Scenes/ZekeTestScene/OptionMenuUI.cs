@@ -37,9 +37,11 @@ public class OptionMenuUI : MonoBehaviour
     bool mouseBool;
 
     [Header("Gamepad Navigation")]
+    [SerializeField] private bool onMainMenu;
     [SerializeField] private Selectable _selectable;
     [SerializeField] private Selectable _pauseMenuSelectable;
-
+    [SerializeField] private MainMenuUI _mainMenuUI;
+    
     void Start()
     {
         //isPaused = false;
@@ -63,10 +65,21 @@ public class OptionMenuUI : MonoBehaviour
     {
         if (Input.GetButtonDown("Roll"))
         {
-            if (optionMenuIsOpen)
+            if (!onMainMenu)
             {
-                CloseOptionUI();
-                GetComponent<PauseMenuUI>().ShowPauseMenu();
+                if (optionMenuIsOpen)
+                {
+                    CloseOptionUI();
+                    GetComponent<PauseMenuUI>().ShowPauseMenu();
+                }   
+            }
+            else
+            {
+                if (optionMenuIsOpen)
+                {
+                    CloseOptionUI();
+                    _mainMenuUI.OpenMainMenu();
+                }   
             }
         }
     }
@@ -110,10 +123,9 @@ public class OptionMenuUI : MonoBehaviour
     // Close the UI when click the close icon
     public void CloseOptionUI()
     {
-        // Enables options navigation
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(_pauseMenuSelectable.gameObject);
-        
+
         //Cursor.visible = false;
         // pause the time
         //Time.timeScale = 1;
@@ -122,8 +134,8 @@ public class OptionMenuUI : MonoBehaviour
         //UIjumpIn = false;
         //bounce = false;
         optionMenuIsOpen = false;
-        optionMenu.SetActive(false);
         StartCoroutine(OptionAnimation(jumpOutAnimation));
+        optionMenu.SetActive(false);
     }
 
     // Close the UI when click the close icon
