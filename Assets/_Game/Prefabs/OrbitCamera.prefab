@@ -101,7 +101,7 @@ MonoBehaviour:
   facingCameraAngle: 100
   radius: 10
   rotationSpeed: 1
-  orbitAngles: {x: 0, y: 0}
+  orbitAngles: {x: 220, y: 30}
   minVerticalAngle: -15
   maxVerticalAngle: 60
 --- !u!114 &6139878403692956876
@@ -147,7 +147,6 @@ MonoBehaviour:
   offset: 40
   smoothTime: 0.01
   smoothReset: 0.03
-  smoothTimeColliding: 0.1
 --- !u!114 &3966964722782439684
 MonoBehaviour:
   m_ObjectHideFlags: 0

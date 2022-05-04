@@ -34,8 +34,6 @@ public class MouseCameraController : MonoBehaviour
     private OptionMenuUI _optionMenuUI;
 
     private bool inputActive;
-    
-    private bool inputOnStart;
     private float inputOnStartTime;
 
 
@@ -43,12 +41,12 @@ public class MouseCameraController : MonoBehaviour
     {
         SetUI();
 
-        inputOnStartTime -= Time.deltaTime;
-        if (inputOnStartTime <= 0f)
+        if (inputOnStartTime > 0f)
         {
-            inputOnStart = true;
+            inputOnStartTime -= Time.deltaTime;
+            return;
         }
-
+        
         if (!inputActive) { return; }
         
         mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -124,6 +122,7 @@ public class MouseCameraController : MonoBehaviour
 
     private void Start()
     {
+        inputOnStartTime = 0.5f;
         _orbitCamera = GetComponent<OrbitCamera>();
         _optionMenuUI = FindObjectOfType<OptionMenuUI>();
         if (_optionMenuUI == null)

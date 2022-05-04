@@ -43,7 +43,6 @@ public class HUDManager : MonoBehaviour
             mouseInputTimer = 1f;
             runTimer = false;
             mouseDisabled = false;
-            Debug.Log("this");
         }
         else
         {
