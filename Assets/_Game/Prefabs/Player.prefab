@@ -9869,7 +9869,6 @@ GameObject:
   - component: {fileID: 4498180148517832346}
   - component: {fileID: 3933093483227975547}
   - component: {fileID: -4739934166965466230}
-  - component: {fileID: 1638222889}
   - component: {fileID: 1623114293483110338}
   - component: {fileID: 7932282785954336942}
   - component: {fileID: 5219453408891243699}
@@ -10765,14 +10764,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkRadius: 3
   ballRadius: 6
---- !u!81 &1638222889
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1120980949673537141}
-  m_Enabled: 1
 --- !u!114 &1623114293483110338
 MonoBehaviour:
   m_ObjectHideFlags: 0
