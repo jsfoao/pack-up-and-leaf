@@ -68,7 +68,14 @@ public class HUDManager : MonoBehaviour
     private void Update()
     {
         // Disabling mouse input timer
-        if (!isPaused) { return; }
+        if (!isPaused)
+        {
+            if (!mouseDisabled)
+            {
+                DeactivateMouseCursor();
+            }
+            return;
+        }
         ExecuteMouseBuffer();
     }
     

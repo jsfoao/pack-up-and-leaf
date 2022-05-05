@@ -24,11 +24,11 @@ public class OptionMenuUI : MonoBehaviour
     [SerializeField] float startRectY;
 
     [Header("UI sliders")]
-    [SerializeField] Slider masterSlider;
-    [SerializeField] Slider musicSlider;
-    [SerializeField] Slider soundSlider;
-    [SerializeField] Slider mouseSlider;
-    [SerializeField] Toggle mouseToggle;
+    [SerializeField] public Slider masterSlider;
+    [SerializeField] public Slider musicSlider;
+    [SerializeField] public Slider soundSlider;
+    [SerializeField] public Slider mouseSlider;
+    [SerializeField] public Toggle mouseToggle;
 
 
     [SerializeField] AudioMixer audioMixer;
@@ -135,6 +135,12 @@ public class OptionMenuUI : MonoBehaviour
         optionMenuIsOpen = false;
         StartCoroutine(OptionAnimation(jumpOutAnimation));
         optionMenu.SetActive(false);
+        
+        // Save settings to be used on other scenes
+        if (OptionsLoader.Instance != null)
+        {
+            OptionsLoader.Instance.SaveSettings();
+        }
     }
 
     // Close the UI when click the close icon
@@ -150,6 +156,11 @@ public class OptionMenuUI : MonoBehaviour
         optionMenuIsOpen = true;
         optionMenu.SetActive(true);
         StartCoroutine(OptionAnimation(jumpInAnimation));
+
+        if (OptionsLoader.Instance != null)
+        {
+            OptionsLoader.Instance.LoadSettings();
+        }
     }
 
     IEnumerator OptionAnimation(AnimationCurve thisAnimation)
