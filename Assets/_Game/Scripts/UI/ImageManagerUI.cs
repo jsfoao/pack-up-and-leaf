@@ -6,9 +6,19 @@ public class ImageManagerUI : MonoBehaviour
 {
     [SerializeField] private Color selectedColor;
     [SerializeField] private Color deselectedColor;
+    [SerializeField] private Sprite keyboardSprite;
+    [SerializeField] private Sprite gamepadSprite;
+
+    [SerializeField] private bool simpleMessage;
+    
+    
 
     private void Start()
     {
+        if (simpleMessage)
+        {
+            return;
+        }
         SetDeselectedColor();
     }
 
@@ -25,5 +35,15 @@ public class ImageManagerUI : MonoBehaviour
     public void SetDeselectedColor()
     {
         SetImageColor(deselectedColor);
+    }
+
+    public void SetGamepadSprite()
+    {
+        GetComponent<Image>().sprite = gamepadSprite;
+    }
+
+    public void SetKeyboardSprite()
+    {
+        GetComponent<Image>().sprite = keyboardSprite;
     }
 }

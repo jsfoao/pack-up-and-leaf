@@ -62,8 +62,6 @@ public class MovingBoxUI : MonoBehaviour
         //{
         //    child.SetActive(false);
         //}
-        skipMsg.enabled = false;
-
     }
 
     private void Update()
@@ -180,6 +178,16 @@ public class MovingBoxUI : MonoBehaviour
 
     public void ShowChestMsg()
     {
+        bool usingMouse = GameManager.Instance.GetPlayerEntity().GetComponent<InputManager>().usingMouse;
+        if (usingMouse)
+        {
+            openChestMsg.GetComponent<ImageManagerUI>().SetKeyboardSprite();
+        }
+        else
+        {
+            openChestMsg.GetComponent<ImageManagerUI>().SetGamepadSprite();
+        }
+
         openChestMsg.enabled = true;
     }
 
@@ -191,6 +199,17 @@ public class MovingBoxUI : MonoBehaviour
 
     public void ShowSKipMsg()
     {
+        Debug.Log("Show skip message");
+        bool usingMouse = GameManager.Instance.GetPlayerEntity().GetComponent<InputManager>().usingMouse;
+        if (usingMouse)
+        {
+            skipMsg.GetComponent<ImageManagerUI>().SetKeyboardSprite();
+        }
+        else
+        {
+            skipMsg.GetComponent<ImageManagerUI>().SetGamepadSprite();
+        }
+
         skipMsg.enabled = true;
     }
 

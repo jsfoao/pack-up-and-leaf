@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public class InputManager : MonoBehaviour, IInput
 {
@@ -30,6 +31,8 @@ public class InputManager : MonoBehaviour, IInput
     #endregion
 
     private float inputTimer;
+    [NonSerialized] public bool usingMouse;
+    private float mouseTimer;
 
     public void SetInput(bool active)
     {
@@ -67,6 +70,22 @@ public class InputManager : MonoBehaviour, IInput
         {
             ExecuteInput();
         }
+
+        // Mouse buffer
+        Vector2 mouseVec = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        bool mouseInput = mouseVec.magnitude > 0.1f;
+
+        mouseTimer = Mathf.Clamp(mouseTimer, -1f, 4f);
+        if (!mouseInput)
+        {
+            mouseTimer -= Time.deltaTime;
+        }
+        else
+        {
+            mouseTimer = 3f;
+        }
+
+        usingMouse = mouseTimer > 0; 
     }
 
     private void ExecuteInput()
