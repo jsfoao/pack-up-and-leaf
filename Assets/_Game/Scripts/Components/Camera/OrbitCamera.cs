@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
@@ -17,6 +18,7 @@ public class OrbitCamera : MonoBehaviour
     [Header("Orbit")]
     [SerializeField, Tooltip("Camera distance radius")] private float radius;
     [SerializeField, Range(0.1f, 10f), Tooltip("Orbital rotation speed")] private float rotationSpeed;
+    [SerializeField, Range(0.1f, 10f), Tooltip("Orbital rotation speed")] private float onAirRotationSpeed;
     private float currentRadius = 5f;
     [SerializeField] private Vector2 orbitAngles;
     [SerializeField, Range(-89f, 89f)] private float minVerticalAngle;
@@ -105,7 +107,7 @@ public class OrbitCamera : MonoBehaviour
         }
 
         #region Convert angles
-        float angle = Vector3.Angle(target.forward, Vector3.forward);
+        float angle = Vector3.Angle(direction, Vector3.forward);
         float relativeAngle;
         if (target.forward.x < 0 && target.forward.z < 0)
         {
@@ -127,7 +129,14 @@ public class OrbitCamera : MonoBehaviour
         
         if (!isFacingCamera)
         {
-            orbitAngles.x = Mathf.LerpAngle(orbitAngles.x, relativeAngle, speed * Time.unscaledDeltaTime);
+            if (GameManager.Instance.GetPlayerEntity().GetComponent<PlayerManager>().isGrounded)
+            {
+                orbitAngles.x = Mathf.LerpAngle(orbitAngles.x, relativeAngle, speed * Time.unscaledDeltaTime);
+            }
+            else
+            {
+                orbitAngles.x = Mathf.LerpAngle(orbitAngles.x, relativeAngle, onAirRotationSpeed * Time.unscaledDeltaTime);
+            }
         }
 
         orbitAngles.y = Mathf.LerpAngle(orbitAngles.y, defaultHeight, speed * Time.unscaledDeltaTime);

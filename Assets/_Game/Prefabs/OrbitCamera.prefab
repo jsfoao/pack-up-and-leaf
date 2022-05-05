@@ -98,9 +98,10 @@ MonoBehaviour:
   target: {fileID: 0}
   focusRadius: 0.6
   focusCentering: 0.8
-  facingCameraAngle: 100
+  facingCameraAngle: 120
   radius: 10
   rotationSpeed: 1
+  onAirRotationSpeed: 0.5
   orbitAngles: {x: 220, y: 30}
   minVerticalAngle: -15
   maxVerticalAngle: 60
