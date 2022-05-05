@@ -55,6 +55,8 @@ public class InputManager : MonoBehaviour, IInput
         {
             camera = Camera.main;
         }
+
+        mouseTimer = 2f;
     }
     private void Update()
     {
@@ -73,18 +75,19 @@ public class InputManager : MonoBehaviour, IInput
 
         // Mouse buffer
         Vector2 mouseVec = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        bool mouseInput = mouseVec.magnitude > 0.1f;
+        bool mouseInput = mouseVec.magnitude > 0.5f;
 
-        mouseTimer = Mathf.Clamp(mouseTimer, -1f, 4f);
+        mouseTimer = Mathf.Clamp(mouseTimer, -2f, 4f);
         if (!mouseInput)
         {
             mouseTimer -= Time.deltaTime;
         }
         else
         {
-            mouseTimer = 3f;
+            mouseTimer = 2f;
         }
 
+        Debug.Log("using mouse: " + usingMouse);
         usingMouse = mouseTimer > 0; 
     }
 

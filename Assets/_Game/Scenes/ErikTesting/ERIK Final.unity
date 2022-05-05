@@ -51720,6 +51720,28 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1621886211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 173382575, guid: fccf9b959685fe446801c6820db5ef91, type: 3}
+  m_PrefabInstance: {fileID: 2038177829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1621886212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621886211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1821fd290c947ce4ebd1f616952307a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedColor: {r: 0, g: 0, b: 0, a: 0}
+  deselectedColor: {r: 0, g: 0, b: 0, a: 0}
+  keyboardSprite: {fileID: 21300000, guid: fd40d3850b69dfc4182a55c9f1724ef9, type: 3}
+  gamepadSprite: {fileID: 0}
+  simpleMessage: 1
 --- !u!1001 &1630492860
 PrefabInstance:
   m_ObjectHideFlags: 0
