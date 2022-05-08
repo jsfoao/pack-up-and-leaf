@@ -37,7 +37,7 @@ public class OptionsLoader : MonoBehaviour
         masterSettings = 1;
         musicSettings = 1;
         sfxSettings = 1;
-        mouseSensSettings = 1;
+        mouseSensSettings = 0.3f;
         axisSettings = false;
     }
 

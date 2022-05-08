@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class DoubleCheckUI : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class DoubleCheckUI : MonoBehaviour
 
     private bool isShowing = false;
     [SerializeField] private HUDManager hudRef;
+
     [Header("Gamepad Navigation")] [SerializeField]
     private Selectable _selectable;
 
@@ -50,7 +52,14 @@ public class DoubleCheckUI : MonoBehaviour
         hudRef.SetPaused();
         GameManager.Instance.SetEntityInput(false);
 
+        // pause the time
+        Time.timeScale = 0;
+        AudioListener.pause = true;
+
         onShowDoubleCheck.Invoke();
+
+        EventSystem.current.SetSelectedGameObject(_selectable.gameObject);
+
         // make the UI visible 
         gameObject.GetComponent<Image>().enabled = true;
         foreach (GameObject child in childs)
@@ -76,8 +85,6 @@ public class DoubleCheckUI : MonoBehaviour
         {
             markB.enabled = true;
         }
-        
-
     }
 
 
@@ -86,6 +93,13 @@ public class DoubleCheckUI : MonoBehaviour
         isShowing = false;
         hudRef.SetUnpaused();
         GameManager.Instance.SetEntityInput(true);
+        
+        // resume time
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+
+        EventSystem.current.SetSelectedGameObject(null);
+        Debug.Log("close double check");
 
         // make the UI visible 
         gameObject.GetComponent<Image>().enabled = false;
@@ -93,9 +107,19 @@ public class DoubleCheckUI : MonoBehaviour
         {
             child.SetActive(false);
         }
-        
-
     }
 
+    public void CloseDoubleCheckUIYes()
+    {
+        isShowing = false;
 
+        EventSystem.current.SetSelectedGameObject(null);
+
+        // make the UI visible 
+        gameObject.GetComponent<Image>().enabled = false;
+        foreach (GameObject child in childs)
+        {
+            child.SetActive(false);
+        }
+    }
 }

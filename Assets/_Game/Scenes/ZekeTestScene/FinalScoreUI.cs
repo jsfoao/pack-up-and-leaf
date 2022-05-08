@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class FinalScoreUI : MonoBehaviour
@@ -15,6 +16,8 @@ public class FinalScoreUI : MonoBehaviour
     [SerializeField] Image rankB;
     [SerializeField] Image rankS;
 
+    [SerializeField] private Selectable _selectable;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -35,13 +38,20 @@ public class FinalScoreUI : MonoBehaviour
     // show the final score panel
     public void ShowFinalScore()
     {
-        if (leafAmount.Value <= leafToWinTreshold.Value)
+        if (leafAmount.Value < leafToWinTreshold.Value)
         {
             return;
         }
-
+        
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        
+        // resume time
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+        
+        GameManager.Instance.SetEntityInput(false);
+        EventSystem.current.SetSelectedGameObject(_selectable.gameObject);
 
         // make the UI visible 
         gameObject.GetComponent<Image>().enabled = true;

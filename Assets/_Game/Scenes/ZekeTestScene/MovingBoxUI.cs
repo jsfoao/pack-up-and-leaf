@@ -168,7 +168,18 @@ public class MovingBoxUI : MonoBehaviour
 
     public void ShowMovingBoxMsg()
     {
+    
+        bool usingMouse = GameManager.Instance.GetPlayerEntity().GetComponent<InputManager>().usingMouse;
         movingBoxMsg.enabled = true;
+        if (usingMouse)
+        {
+            movingBoxMsg.GetComponent<ImageManagerUI>().SetKeyboardSprite();
+        }
+        else
+        {
+            Debug.Log("Use gamepad sprite");
+            movingBoxMsg.GetComponent<ImageManagerUI>().SetGamepadSprite();
+        }
     }
 
     public void CloseMovingBoxMsg()
