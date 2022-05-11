@@ -1333,6 +1333,7 @@ MonoBehaviour:
   rankA: {fileID: 816579463}
   rankB: {fileID: 1754111956}
   rankS: {fileID: 793648744}
+  _selectable: {fileID: 0}
 --- !u!1 &1663674536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,8 +1882,10 @@ MonoBehaviour:
   mouseToggle: {fileID: 7962390567939462344}
   audioMixer: {fileID: 24100000, guid: fbc3ab884ef304a4589cfc12c9e0a56d, type: 2}
   sliderMultiplier: 30
+  onMainMenu: 0
   _selectable: {fileID: 1210199747}
   _pauseMenuSelectable: {fileID: 2005165142619933404}
+  _mainMenuUI: {fileID: 0}
 --- !u!1 &955147213870046245
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,7 +2029,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b74de277797d849459416e50ea8b6826, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf6e6877ffb56a94fa7e78dcd5efc235, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4304,6 +4307,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
   deselectedColor: {r: 0, g: 0, b: 0, a: 0}
+  keyboardSprite: {fileID: 0}
+  gamepadSprite: {fileID: 0}
+  simpleMessage: 0
 --- !u!114 &2096756624009652565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4363,6 +4369,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
   deselectedColor: {r: 0, g: 0, b: 0, a: 0}
+  keyboardSprite: {fileID: 0}
+  gamepadSprite: {fileID: 0}
+  simpleMessage: 0
 --- !u!114 &288581623241804506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4467,6 +4476,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
   deselectedColor: {r: 0, g: 0, b: 0, a: 0}
+  keyboardSprite: {fileID: 0}
+  gamepadSprite: {fileID: 0}
+  simpleMessage: 0
 --- !u!114 &3239769751729398709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4481,6 +4493,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
   deselectedColor: {r: 0, g: 0, b: 0, a: 0}
+  keyboardSprite: {fileID: 0}
+  gamepadSprite: {fileID: 0}
+  simpleMessage: 0
 --- !u!1001 &8397604200543734417
 PrefabInstance:
   m_ObjectHideFlags: 0
